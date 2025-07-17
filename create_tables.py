@@ -1,6 +1,6 @@
 # create_db.py
 from web import db, create_app
-from web.models import User
+from web.models import Aircraft,SeatClass
 app = create_app()
 
 with app.app_context():

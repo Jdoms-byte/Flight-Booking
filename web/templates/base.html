@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Font Awesome -->
@@ -11,7 +12,7 @@
 <body class="h-screen bg-gray-100 flex">
 
   <!-- Sidebar -->
-  <nav class="w-64 bg-green-950 text-white flex flex-col p-4 fixed h-full overflow-y-auto">
+  <nav class="w-64 text-white flex flex-col p-4 fixed h-full overflow-y-auto sidebar">
     <h4 class="text-center text-2xl font-bold mb-6">Flight Admin</h4>
 
     <a href="{{ url_for('views.dashboard') }}" class="flex justify-between items-center py-2 px-4 hover:bg-gray-700 rounded">
@@ -30,7 +31,6 @@
       <a href="{{ url_for('views.flight_routes') }}" class="block py-2 hover:bg-gray-700 rounded">Routes</a>
       <a href="{{ url_for('views.flight_schedules') }}" class="block py-2 hover:bg-gray-700 rounded">Schedules</a>
       <a href="{{ url_for('views.flight_seats') }}" class="block py-2 hover:bg-gray-700 rounded">Seats</a>
-      <a href="{{ url_for('views.seat_classes') }}" class="block py-2 hover:bg-gray-700 rounded">Seat Classes</a>
     </div>
 
     <!-- Assets -->
@@ -42,6 +42,7 @@
       <a href="{{ url_for('views.airports') }}" class="block py-2 hover:bg-gray-700 rounded">Airports</a>
       <a href="{{ url_for('views.airlines') }}" class="block py-2 hover:bg-gray-700 rounded">Airlines</a>
       <a href="{{ url_for('views.aircraft') }}" class="block py-2 hover:bg-gray-700 rounded">Aircraft</a>
+      <a href="{{ url_for('views.seat_classes') }}" class="block py-2 hover:bg-gray-700 rounded">Seat Classes</a>
     </div>
 
     <!-- Bookings -->

@@ -344,7 +344,7 @@ def delete_flight_seat(id):
 @login_required
 def seat_classes():
     classes = SeatClass.query.all()
-    return render_template('seat_classes/seat_classes.html', classes=classes)
+    return render_template('assets/seat_classes.html', classes=classes)
 
 @views.route('/seat_classes/add', methods=['GET', 'POST'])
 @login_required
@@ -360,7 +360,7 @@ def add_seat_class():
         flash('Seat class added successfully!', 'success')
         return redirect(url_for('views.seat_classes'))
 
-    return render_template('seat_classes/add_class.html')
+    return render_template('assets/add_class.html')
 
 @views.route('/seat_classes/edit/<int:id>', methods=['GET', 'POST'])
 @login_required
