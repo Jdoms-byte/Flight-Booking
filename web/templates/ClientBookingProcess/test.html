@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Flight Date Selector</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+    }
+
+    .date-carousel {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 1000px;
+      margin: auto;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    .arrow-btn {
+      background: white;
+      border: none;
+      font-size: 28px;
+      cursor: pointer;
+      padding: 20px;
+      color: #0071c2;
+    }
+
+    .dates-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: nowrap;
+      width: 100%;
+    }
+
+    .date-box {
+      flex: 1;
+      padding: 16px;
+      text-align: center;
+      cursor: pointer;
+      border-right: 1px solid #e5e7eb;
+      background: white;
+      transition: background 0.3s;
+    }
+
+    .date-box:last-child {
+      border-right: none;
+    }
+
+    .date-box:hover {
+      background: #f3f4f6;
+    }
+
+    .date-box.selected {
+      background: #facc15;
+      font-weight: bold;
+    }
+
+    .day {
+      font-size: 14px;
+      color: #4b5563;
+    }
+
+    .price {
+      font-size: 16px;
+      color: #1f2937;
+      margin-top: 4px;
+    }
+
+    .price b {
+      color: #0c4a6e;
+    }
+
+    .date-box.selected .price b {
+      color: #1e3a8a;
+    }
+  </style>
+</head>
+<body>
+
+<div class="date-carousel">
+  <button class="arrow-btn" onclick="shiftDates(-7)">&#8249;</button>
+
+  <div class="dates-container" id="datesContainer">
+    <!-- Dates will be inserted here -->
+  </div>
+
+  <button class="arrow-btn" onclick="shiftDates(7)">&#8250;</button>
+</div>
+
+<script>
+  let startIndex = 0;
+
+  function formatDate(date) {
+    const options = { weekday: 'short', day: '2-digit', month: 'short' };
+    return date.toLocaleDateString('en-US', options);
+  }
+
+  function generatePrice() {
+    // Random price from 4000 to 10000
+    return (Math.floor(Math.random() * 6000) + 4000).toLocaleString();
+  }
+
+  function renderDates() {
+    const container = document.getElementById('datesContainer');
+    container.innerHTML = "";
+
+    const today = new Date();
+
+    for (let i = 0; i < 7; i++) {
+      const date = new Date(today);
+      date.setDate(today.getDate() + startIndex + i);
+
+      const box = document.createElement('div');
+      box.className = 'date-box';
+
+      if (i === 0) box.classList.add('selected'); // first one selected
+
+      box.innerHTML = `
+        <div class="day">${formatDate(date)}</div>
+        <div class="price">PHP <b>${generatePrice()}</b></div>
+      `;
+
+      box.addEventListener('click', () => {
+        document.querySelectorAll('.date-box').forEach(d => d.classList.remove('selected'));
+        box.classList.add('selected');
+      });
+
+      container.appendChild(box);
+    }
+  }
+
+  function shiftDates(amount) {
+    startIndex += amount;
+    renderDates();
+  }
+
+  renderDates();
+</script>
+
+</body>
+</html>
+

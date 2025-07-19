@@ -18,7 +18,7 @@ views = Blueprint('views', __name__)
 
 @views.route('/')
 def home():
-    return render_template('index.html')
+    return render_template('system/index.html')
 
 # ---------------------------
 # Dashboard View
@@ -26,7 +26,7 @@ def home():
 @views.route('/dashboard')
 @login_required
 def dashboard():
-    return render_template('dashboard.html')
+    return render_template('system/dashboard.html')
 
 # ---------------------------
 # User View
@@ -34,7 +34,7 @@ def dashboard():
 @views.route('/profile')
 @login_required
 def profile():
-    return render_template('profile.html')
+    return render_template('system/profile.html')
 
 @views.route('/profile/update-image', methods=['POST'])
 @login_required
@@ -64,7 +64,7 @@ def update_profile_image():
 @login_required
 def flights():
     flights = Flight.query.all()
-    return render_template('flight/flights.html', flights=flights)
+    return render_template('system/flight/flights.html', flights=flights)
 
 @views.route('/flights/add', methods=['GET', 'POST'])
 @login_required
@@ -99,7 +99,7 @@ def add_flight():
         flash('Flight added successfully!', 'success')
         return redirect(url_for('views.flights'))
 
-    return render_template('flight/add_flight.html',
+    return render_template('system/flight/add_flight.html',
                            airlines=airlines,
                            aircrafts=aircrafts,
                            routes=routes)
@@ -117,7 +117,7 @@ def edit_flight(id):
         db.session.commit()
         flash('Flight updated successfully!', 'success')
         return redirect(url_for('views.flights'))
-    return render_template('flight/edit_flight.html', flight=flight)
+    return render_template('system/flight/edit_flight.html', flight=flight)
 
 @views.route('/flights/delete/<int:id>')
 @login_required
@@ -135,7 +135,7 @@ def delete_flight(id):
 @login_required
 def flight_routes():
     routes = FlightRoute.query.all()
-    return render_template('flight_routes/flight_routes.html', routes=routes)
+    return render_template('system/flight_routes/flight_routes.html', routes=routes)
 
 @views.route('/flight_routes/add', methods=['GET', 'POST'])
 @login_required
@@ -166,7 +166,7 @@ def add_flight_route():
         flash('Flight route added successfully!', 'success')
         return redirect(url_for('views.flight_routes'))
 
-    return render_template('flight_routes/add_route.html', airports=airports, airlines=airlines, aircraft=aircraft)
+    return render_template('system/flight_routes/add_route.html', airports=airports, airlines=airlines, aircraft=aircraft)
 
 
 @views.route('/flight_routes/edit/<int:id>', methods=['GET', 'POST'])
@@ -182,7 +182,7 @@ def edit_flight_route(id):
         db.session.commit()
         flash('Flight route updated successfully!', 'success')
         return redirect(url_for('views.flight_routes'))
-    return render_template('flight_routes/edit_route.html', route=route, airports=airports)
+    return render_template('system/flight_routes/edit_route.html', route=route, airports=airports)
 
 @views.route('/flight_routes/delete/<int:id>')
 @login_required
@@ -216,7 +216,7 @@ def flight_schedules():
         })
 
     return render_template(
-        'flight_schedules/flight_schedules.html',
+        'system/flight_schedules/flight_schedules.html',
         schedule_data=schedule_data,
         current_time=current_time
     )
@@ -245,7 +245,7 @@ def add_flight_schedule():
         flash('Flight schedule added successfully!', 'success')
         return redirect(url_for('views.flight_schedules'))
 
-    return render_template('flight_schedules/add_schedule.html', flights=flights)
+    return render_template('system/flight_schedules/add_schedule.html', flights=flights)
 
 
 @views.route('/flight_schedules/edit/<int:id>', methods=['GET', 'POST'])
@@ -262,7 +262,7 @@ def edit_flight_schedule(id):
         db.session.commit()
         flash('Flight schedule updated successfully!', 'success')
         return redirect(url_for('views.flight_schedules'))
-    return render_template('flight_schedules/edit_schedule.html', schedule=schedule, flights=flights)
+    return render_template('system/flight_schedules/edit_schedule.html', schedule=schedule, flights=flights)
 
 @views.route('/flight_schedules/delete/<int:id>')
 @login_required
@@ -280,7 +280,7 @@ def delete_flight_schedule(id):
 @login_required
 def flight_seats():
     seats = FlightSeat.query.all()
-    return render_template('flight_seats/flight_seats.html', seats=seats)
+    return render_template('system/flight_seats/flight_seats.html', seats=seats)
 
 @views.route('/flight_seats/add', methods=['GET', 'POST'])
 @login_required
@@ -306,7 +306,7 @@ def add_flight_seat():
         flash('Flight seat added successfully!', 'success')
         return redirect(url_for('views.flight_seats'))
 
-    return render_template('flight_seats/add_seat.html', schedules=schedules, seat_classes=seat_classes)
+    return render_template('system/flight_seats/add_seat.html', schedules=schedules, seat_classes=seat_classes)
 
 
 @views.route('/flight_seats/edit/<int:id>', methods=['GET', 'POST'])
@@ -326,7 +326,7 @@ def edit_flight_seat(id):
         flash('Flight seat updated successfully!', 'success')
         return redirect(url_for('views.flight_seats'))
 
-    return render_template('flight_seats/edit_seat.html', seat=seat, schedules=schedules, seat_classes=seat_classes)
+    return render_template('system/flight_seats/edit_seat.html', seat=seat, schedules=schedules, seat_classes=seat_classes)
 
 @views.route('/flight_seats/delete/<int:id>')
 @login_required
@@ -344,7 +344,7 @@ def delete_flight_seat(id):
 @login_required
 def seat_classes():
     classes = SeatClass.query.all()
-    return render_template('assets/seat_classes.html', classes=classes)
+    return render_template('system/assets/seat_classes.html', classes=classes)
 
 @views.route('/seat_classes/add', methods=['GET', 'POST'])
 @login_required
@@ -360,7 +360,7 @@ def add_seat_class():
         flash('Seat class added successfully!', 'success')
         return redirect(url_for('views.seat_classes'))
 
-    return render_template('assets/add_class.html')
+    return render_template('system/assets/add_class.html')
 
 @views.route('/seat_classes/edit/<int:id>', methods=['GET', 'POST'])
 @login_required
@@ -374,7 +374,7 @@ def edit_seat_class(id):
         flash('Seat class updated successfully!', 'success')
         return redirect(url_for('views.seat_classes'))
 
-    return render_template('seat_classes/edit_class.html', seat_class=seat_class)
+    return render_template('system/seat_classes/edit_class.html', seat_class=seat_class)
 
 @views.route('/seat_classes/delete/<int:id>')
 @login_required
@@ -392,7 +392,7 @@ def delete_seat_class(id):
 @login_required
 def airports():
     all_airports = Airport.query.all()
-    return render_template('assets/airports.html', airports=all_airports)
+    return render_template('system/assets/airports.html', airports=all_airports)
 
 @views.route('/airports/add', methods=['GET', 'POST'])
 @login_required
@@ -415,7 +415,7 @@ def add_airport():
         flash('Airport added successfully!', category='success')
         return redirect(url_for('views.airports'))
 
-    return render_template('assets/add_airport.html')
+    return render_template('system/assets/add_airport.html')
 
 
 @views.route('/airports/edit/<int:id>', methods=['GET', 'POST'])
@@ -429,7 +429,7 @@ def edit_airport(id):
         airport.country = request.form['country']
         db.session.commit()
         return redirect(url_for('views.airports'))
-    return render_template('assets/edit_airport.html', airport=airport)
+    return render_template('system/assets/edit_airport.html', airport=airport)
 
 
 @views.route('/airports/delete/<int:id>')
@@ -447,7 +447,7 @@ def delete_airport(id):
 @login_required
 def airlines():
     all_airlines = Airline.query.all()
-    return render_template('assets/airlines.html', airlines=all_airlines)
+    return render_template('system/assets/airlines.html', airlines=all_airlines)
 
 @views.route('/airlines/add', methods=['GET', 'POST'])
 @login_required
@@ -459,7 +459,7 @@ def add_airline():
         db.session.add(new_airline)
         db.session.commit()
         return redirect(url_for('views.airlines'))
-    return render_template('assets/add_airline.html')
+    return render_template('system/assets/add_airline.html')
 
 @views.route('/airlines/edit/<int:id>', methods=['GET', 'POST'])
 @login_required
@@ -470,7 +470,7 @@ def edit_airline(id):
         airline.name = request.form['name']
         db.session.commit()
         return redirect(url_for('views.airlines'))
-    return render_template('assets/edit_airline.html', airline=airline)
+    return render_template('system/assets/edit_airline.html', airline=airline)
 
 @views.route('/airlines/delete/<int:id>')
 @login_required
@@ -487,7 +487,7 @@ def delete_airline(id):
 @login_required
 def aircraft():
     all_aircraft = Aircraft.query.all()
-    return render_template('assets/aircraft.html', aircraft=all_aircraft)
+    return render_template('system/assets/aircraft.html', aircraft=all_aircraft)
 
 @views.route('/aircraft/add', methods=['GET', 'POST'])
 @login_required
@@ -510,7 +510,7 @@ def add_aircraft():
         db.session.commit()
         return redirect(url_for('views.aircraft'))
 
-    return render_template('assets/add_aircraft.html', airlines=airlines)
+    return render_template('system/assets/add_aircraft.html', airlines=airlines)
 
 
 @views.route('/aircraft/edit/<int:id>', methods=['GET', 'POST'])
@@ -526,7 +526,7 @@ def edit_aircraft(id):
         db.session.commit()
         return redirect(url_for('views.aircraft'))
 
-    return render_template('assets/edit_aircraft.html', aircraft=aircraft, airlines=airlines)
+    return render_template('system/assets/edit_aircraft.html', aircraft=aircraft, airlines=airlines)
 
 
 @views.route('/aircraft/delete/<int:id>')
@@ -544,7 +544,7 @@ def delete_aircraft(id):
 @login_required
 def bookings():
     all_bookings = Booking.query.all()
-    return render_template('booking_payment/bookings.html', bookings=all_bookings)
+    return render_template('system/booking_payment/bookings.html', bookings=all_bookings)
 
 def generate_reference():
     return 'BKG' + ''.join(random.choices(string.digits, k=7))
@@ -573,7 +573,7 @@ def add_booking():
         flash('Booking created successfully!', 'success')
         return redirect(url_for('views.bookings'))
 
-    return render_template('booking_payment/add_booking.html', students=students)
+    return render_template('system/booking_payment/add_booking.html', students=students)
 
 @views.route('/bookings/edit/<int:id>', methods=['GET', 'POST'])
 @login_required
@@ -588,7 +588,7 @@ def edit_booking(id):
         flash('Booking updated!', 'success')
         return redirect(url_for('views.bookings'))
 
-    return render_template('booking_payment/edit_booking.html', booking=booking, students=students)
+    return render_template('system/booking_payment/edit_booking.html', booking=booking, students=students)
 
 @views.route('/bookings/delete/<int:id>')
 @login_required
@@ -605,7 +605,7 @@ def delete_booking(id):
 @views.route('/booking-details')
 def booking_details():
     all_details = BookingDetail.query.all()
-    return render_template('booking_payment/booking_details.html', booking_details=all_details)
+    return render_template('system/booking_payment/booking_details.html', booking_details=all_details)
 
 @views.route('/booking-details/add', methods=['GET', 'POST'])
 def add_booking_detail():
@@ -633,7 +633,7 @@ def add_booking_detail():
             db.session.rollback()
             flash(f'Error adding booking detail: {e}', 'danger')
 
-    return render_template('booking_payment/add_booking_detail.html')
+    return render_template('system/booking_payment/add_booking_detail.html')
 
 @views.route('/booking-details/edit/<int:id>', methods=['GET', 'POST'])
 def edit_booking_detail(id):
@@ -652,7 +652,7 @@ def edit_booking_detail(id):
             db.session.rollback()
             flash(f'Error updating booking detail: {e}', 'danger')
 
-    return render_template('booking_payment/edit_booking_detail.html', detail=detail)
+    return render_template('system/booking_payment/edit_booking_detail.html', detail=detail)
 
 @views.route('/booking-details/delete/<int:id>', methods=['POST'])
 def delete_booking_detail(id):
@@ -672,7 +672,7 @@ def delete_booking_detail(id):
 @views.route('/payments')
 def payments():
     all_payments = Payment.query.all()
-    return render_template('booking_payment/payments.html', payments=all_payments)
+    return render_template('system/booking_payment/payments.html', payments=all_payments)
 
 # Add payment
 @views.route('/payments/add', methods=['GET', 'POST'])
@@ -696,7 +696,7 @@ def add_payment():
         return redirect(url_for('views.payments'))
 
     bookings = Booking.query.all()  # For dropdown selection
-    return render_template('booking_payment/add_payment.html', bookings=bookings)
+    return render_template('system/booking_payment/add_payment.html', bookings=bookings)
 
 # Edit payment
 @views.route('/payments/edit/<int:id>', methods=['GET', 'POST'])
@@ -714,7 +714,7 @@ def edit_payment(id):
         return redirect(url_for('views.payments'))
 
     bookings = Booking.query.all()
-    return render_template('booking_payment/edit_payment.html', payment=payment, bookings=bookings)
+    return render_template('system/booking_payment/edit_payment.html', payment=payment, bookings=bookings)
 
 # Delete payment
 @views.route('/payments/delete/<int:id>', methods=['POST'])
@@ -730,7 +730,7 @@ def delete_payment(id):
 @views.route('/check-ins')
 def check_ins():
     all_check_ins = CheckIn.query.all()
-    return render_template('admin/check_ins.html', check_ins=all_check_ins)
+    return render_template('system/admin/check_ins.html', check_ins=all_check_ins)
 
 @views.route('/check-ins/add', methods=['GET', 'POST'])
 def add_check_in():
@@ -750,7 +750,7 @@ def add_check_in():
         return redirect(url_for('views.check_ins'))
 
     booking_details = BookingDetail.query.all()
-    return render_template('admin/add_check_in.html', booking_details=booking_details)
+    return render_template('system/admin/add_check_in.html', booking_details=booking_details)
 
 @views.route('/check-ins/toggle/<int:check_in_id>')
 def toggle_boarding_pass(check_in_id):
@@ -773,7 +773,7 @@ def edit_check_in(check_in_id):
         flash('Check-in updated successfully!', 'success')
         return redirect(url_for('views.check_ins'))
 
-    return render_template('admin/edit_check_in.html', check_in=check_in)
+    return render_template('system/admin/edit_check_in.html', check_in=check_in)
 
 @views.route('/check-ins/delete/<int:check_in_id>', methods=['POST'])
 def delete_check_in(check_in_id):
@@ -789,7 +789,7 @@ def delete_check_in(check_in_id):
 @views.route('/students')
 def students():
     all_students = Student.query.all()
-    return render_template('admin/students.html', students=all_students)
+    return render_template('system/admin/students.html', students=all_students)
 
 @views.route('/students/add', methods=['GET', 'POST'])
 def add_student():
@@ -821,7 +821,7 @@ def add_student():
         flash('Student added successfully!', 'success')
         return redirect(url_for('views.students'))
 
-    return render_template('admin/add_student.html')
+    return render_template('system/admin/add_student.html')
 
 
 @views.route('/students/edit/<int:student_id>', methods=['GET', 'POST'])
@@ -844,7 +844,7 @@ def edit_student(student_id):
         flash('Student updated successfully!', 'success')
         return redirect(url_for('views.students'))
 
-    return render_template('admin/edit_student.html', student=student)
+    return render_template('system/admin/edit_student.html', student=student)
 
 @views.route('/students/delete/<int:student_id>', methods=['POST'])
 def delete_student(student_id):

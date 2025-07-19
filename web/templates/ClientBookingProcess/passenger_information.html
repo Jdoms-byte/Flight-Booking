@@ -1,0 +1,384 @@
+{% extends 'ClientBookingProcess.html' %}
+
+{% block title %}Information {% endblock %}
+
+{% block content %}
+<!-- Header -->
+<div class="bg-gray-200 shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 py-4">
+        <div class="flex justify-between items-center">
+            <div class="flex space-x-8 text-sm">
+                <div>
+                    <div class="text-gray-600">Departing from</div>
+                    <div class="font-semibold">Manila, Philippines - MNL</div>
+                    <div class="text-gray-500">08 May 2025</div>
+                </div>
+                <div>
+                    <div class="text-gray-600">Returning flight</div>
+                    <div class="font-semibold">Butuan, Philippines - BXU</div>
+                    <div class="text-gray-500">15 May 2025</div>
+                </div>
+                <div>
+                    <div class="text-gray-600">Count/s</div>
+                    <div class="font-semibold">1 Adult</div>
+                </div>
+            </div>
+            <button class="bg-green text-white px-8 py-2 text-lg cursor-pointer  rounded-sm hover:bg-teal-900 transition-colors">
+                Edit Search
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Progress Steps -->
+<div class="teal">
+  <div class="max-w-5xl mx-auto px-7 py-7">
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-10">
+      <button class="head-green border-1 text-white  py-3 text-sm shadow-2xs font-bold space-x-1 rounded-sm">Select Flight</button>
+      <button class="bg-white border-2 text-gray-700  py-3 text--sm shadow-2xs font-bold space-x-1 rounded-sm">Information</button>
+      <button class="bg-white border-2 text-gray-700  py-3 text-sm shadow-2xs font-bold space-x-1 rounded-sm">Seats</button>
+      <button class="bg-white border-2 text-gray-700  py-3 text--sm shadow-2xs font-bold space-x-1 rounded-sm">Payment</button>
+      <button class="bg-white border-2 text-gray-700  py-3 text--sm shadow-2xs font-bold space-x-1 rounded-sm">Confirmation</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="max-w-4xl mt-5 mx-auto">
+    <div class="my-5 ml-[-50px] ">
+        <h1 class="text-3xl">Passenger  Information</h1>
+    </div>
+        <p class="text-[11px] font-semibold text-shadow-2xs">Now that you've selected your flight, enter your details.</p>
+         <div class="flex border rounded-2xl shadow-2xl">
+                <!-- Left Sidebar with Tabs -->
+                <div class="w-32 bg-gray-100 rounded-3xl">
+                    <div class="p-2 space-y-1">
+                        <div class="bg-emerald-950 text-white text-xs py-2 px-3 rounded text-center font-medium cursor-pointer">
+                            Adult 1
+                        </div>
+                        <div class="bg-gray-200 text-gray-600 text-xs py-2 px-3 rounded text-center cursor-pointer">
+                            Adult 2
+                        </div>
+                        <div class="bg-gray-200 text-gray-600 text-xs py-2 px-3 rounded text-center cursor-pointer">
+                            Adult 3
+                        </div>
+                        <div class="bg-gray-200 text-gray-600 text-xs py-2 px-3 rounded text-center cursor-pointer">
+                            Adult 4
+                        </div>
+                        <div class="bg-gray-200 text-gray-600 text-xs py-2 px-3 rounded text-center cursor-pointer">
+                            Adult 5
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Form Content -->
+                <div class="flex-1 p-6">
+                    <!-- Adult 1 Header -->
+                    <div class="mb-6">
+                        <h2 class="text-lg font-semibold text-gray-800">Adult 1</h2>
+                    </div>
+
+                    <!-- Name Section -->
+                    <div class="mb-6">
+                        <h3 class="text-sm font-medium text-gray-700 mb-3">Name:</h3>
+                        <p class="text-xs text-gray-500 mb-3">
+                            Please make sure that you enter your name exactly as it is shown on your Valid ID
+                        </p>
+                        
+                        <div class="grid grid-cols-3 gap-3">
+                            <!-- Title -->
+                            <div>
+                                <label class="block text-xs font-medium text-gray-700 mb-1">
+                                    Title <span class="text-red-500">*</span>
+                                </label>
+                                <select class="w-full px-2 py-1.5 text-sm border border-gray-300 rounded custom-select focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500">
+                                    <option>Title</option>
+                                    <option>Mr.</option>
+                                    <option>Ms.</option>
+                                    <option>Mrs.</option>
+                                    <option>Dr.</option>
+                                </select>
+                            </div>
+                            
+                            <!-- First Name -->
+                            <div>
+                                <label class="block text-xs font-medium text-gray-700 mb-1">
+                                    First Name <span class="text-red-500">*</span>
+                                </label>
+                                <input type="text" placeholder="Enter first name" class="w-full px-2 py-1.5 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500">
+                            </div>
+                            
+                            <!-- Last Name -->
+                            <div>
+                                <label class="block text-xs font-medium text-gray-700 mb-1">
+                                    Last Name <span class="text-red-500">*</span>
+                                </label>
+                                <input type="text" placeholder="Enter last name" class="w-full px-2 py-1.5 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Date of Birth and Nationality -->
+                    <div class="grid grid-cols-2 gap-8 mb-6">
+                        <!-- Date of Birth -->
+                        <div>
+                            <h3 class="text-sm font-medium text-gray-700 mb-3">Date of Birth:</h3>
+                            <div class="grid grid-cols-3 gap-2">
+                                <div>
+                                    <label class="block text-xs font-medium text-gray-700 mb-1">
+                                        Day <span class="text-red-500">*</span>
+                                    </label>
+                                    <input type="text" placeholder="DD" class="w-full px-2 py-1.5 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-medium text-gray-700 mb-1">
+                                        Month <span class="text-red-500">*</span>
+                                    </label>
+                                    <input type="text" placeholder="Month" class="w-full px-2 py-1.5 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-medium text-gray-700 mb-1">
+                                        Year <span class="text-red-500">*</span>
+                                    </label>
+                                    <input type="text" placeholder="YYYY" class="w-full px-2 py-1.5 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Nationality -->
+                        <div>
+                            <label class=" text-xs font-medium text-gray-700">
+                                Nationality <span class="text-red-500">*</span>
+                            </label>
+                            <input type="text" placeholder="Ex. Philippines" class="w-full px-2 py-1.5 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 mt-5">
+                        </div>
+                    </div>
+
+                    <!-- Passport Information -->
+                    <div class="mb-6">
+                        <h3 class="text-sm font-medium text-gray-700 mb-3">Passport Information</h3>
+                        
+                        <div class="grid grid-cols-2 gap-4 mb-4">
+                            <!-- Passport Number -->
+                            <div>
+                                <label class="block text-xs font-medium text-gray-700 mb-1">
+                                    Passport Number <span class="text-red-500">*</span>
+                                </label>
+                                <input type="text" placeholder="Ex. Philippines" class="w-full px-2 py-1.5 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500">
+                            </div>
+                            
+                            <!-- Passport Country -->
+                            <div>
+                                <label class="block text-xs font-medium text-gray-700 mb-1">
+                                    Passport Country <span class="text-red-500">*</span>
+                                </label>
+                                <input type="text" placeholder="Ex. Philippines" class="w-full px-2 py-1.5 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500">
+                            </div>
+                        </div>
+                        
+                        <!-- Passport Expiry -->
+                        <div>
+                            <h4 class="text-sm font-medium text-gray-700 mb-3">Passport Expiry</h4>
+                            <div class="grid grid-cols-3 gap-2 max-w-md">
+                                <div>
+                                    <label class="block text-xs font-medium text-gray-700 mb-1">
+                                        Day <span class="text-red-500">*</span>
+                                    </label>
+                                    <input type="text" placeholder="DD" class="w-full px-2 py-1.5 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-medium text-gray-700 mb-1">
+                                        Month <span class="text-red-500">*</span>
+                                    </label>
+                                    <input type="text" placeholder="Month" class="w-full px-2 py-1.5 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-medium text-gray-700 mb-1">
+                                        Year <span class="text-red-500">*</span>
+                                    </label>
+                                    <input type="text" placeholder="YYYY" class="w-full px-2 py-1.5 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Next Guest Button -->
+                    <div class="flex justify-end">
+                        <button class="text-blue-600 hover:text-blue-800 text-sm font-medium flex items-center">
+                            Next guest
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        
+        <script>
+            // Handle tab switching
+            const tabs = document.querySelectorAll('.w-32 > div > div');
+            tabs.forEach((tab, index) => {
+                tab.addEventListener('click', function() {
+                    // Remove active class from all tabs
+                    tabs.forEach(t => {
+                        t.classList.remove('bg-emerald-950', 'text-white');
+                        t.classList.add('bg-gray-200', 'text-gray-600');
+                    });
+                    
+                    // Add active class to clicked tab
+                    this.classList.remove('bg-gray-200', 'text-gray-600');
+                    this.classList.add('bg-emerald-950', 'text-white');
+                    
+                    // Update main content title
+                    const mainTitle = document.querySelector('.flex-1 h2');
+                    mainTitle.textContent = this.textContent;
+                });
+            });
+        </script>
+
+
+
+<div class="max-w-4xl mt-10  mx-auto">
+      <div class="my-5 ml-[-50px] ">
+        <h1 class="text-3xl">Contact  Information</h1>
+    </div>
+        <p class="text-[11px] font-semibold text-shadow-2xs">Let us know how we may reach you if there are changes or questions related to your booking and payment. We will also be sending your itinerary to below email.</p>
+
+        <div class="bg-white rounded-lg shadow-2xl border border-gray-800 p-6 pb-15">
+            <!-- Passenger Name -->
+            <div class="mb-3">
+                <label class="block text-sm font-medium text-gray-700 mb-2">
+                    Passenger Name <span class="text-red-500">*</span>
+                </label>
+                <div class="relative">
+                    <input type="text" placeholder="Enter name" class="w-full px-3 py-2 border border-gray-900 shadow-sm/70 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent pr-10">
+                    <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                        <svg class="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path d="M12 1v6m0 6v6m11-7h-6m-6 0H1"></path>
+                        </svg>
+                        <span class="ml-1 text-xs text-gray-500">Use Passenger Information</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Country Code and Mobile Number -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
+                <!-- Country Code -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                        Country Code <span class="text-red-500">*</span>
+                    </label>
+                    <div class="relative">
+                        <select class="w-full px-3 py-2 border border-gray-900 shadow-sm/70 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none bg-white">
+                            <option>+63</option>
+                            <option>+1</option>
+                            <option>+44</option>
+                            <option>+65</option>
+                            <option>+86</option>
+                        </select>
+                        <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                            <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Mobile Number -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                        Mobile Number <span class="text-red-500">*</span>
+                    </label>
+                    <input type="tel" placeholder="Ex. 9127195265" class="w-full px-3 py-2 border border-gray-900 shadow-sm/70 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                </div>
+            </div>
+            
+            <!-- Email and Confirm Email -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Email -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                        Email <span class="text-red-500">*</span>
+                    </label>
+                    <input type="email" placeholder="sample@email.com" class="w-full px-3 py-2 border border-gray-900 shadow-sm/70 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                </div>
+                
+                <!-- Confirm Email -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                        Confirm Email <span class="text-red-500">*</span>
+                    </label>
+                    <input type="email" placeholder="sample@email.com" class="w-full px-3 py-2 border border-gray-900 shadow-sm/70 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="max-w-4xl mt-10 mx-auto">
+
+        <!-- Privacy Policy Confirmation -->
+        <div class="bg-white rounded-lg shadow-2xl border border-gray-800 p-6 ">
+            <div class="flex items-start space-x-3">
+                <!-- Checkbox -->
+                <div class="flex-shrink-0 mt-1">
+                    <input type="checkbox" id="privacy-agreement" class="h-4 w-4 cursor-pointer text-blue-600 focus:ring-blue-500 border-gray-900 shadow-sm/70 rounded">
+                </div>
+                
+                <!-- Agreement Text -->
+                <div class="flex-1">
+                    <label for="privacy-agreement" class="text-sm text-gray-700 leading-relaxed cursor-pointer">
+                        I confirm that I have read, understood, and agree to the updated 
+                        <a href="#" class="text-blue-600 hover:text-blue-800 underline">CSUCC Privacy Policy</a>. 
+                        I consent to the collection, use, processing and sharing of my personal information in accordance therewith.
+                    </label>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Action Buttons -->
+        <div class="flex flex-col sm:flex-row gap-3 sm:justify-end mt-6">
+            <!-- Back Button -->
+            <button class="px-20 py-3 border-2 border-gray-400 text-gray-700 font-medium rounded-md hover:bg-gray-50 hover:border-gray-500 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2">
+                Back
+            </button>
+            
+            <!-- Continue Button -->
+            <button class="px-20 py-3 bg-green-950 text-white font-medium rounded-md hover:bg-green-900 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed" id="continue-btn" disabled>
+                Continue
+            </button>
+        </div>
+
+        </div>
+
+    <script>
+        // Enable/disable continue button based on checkbox state
+        const checkbox = document.getElementById('privacy-agreement');
+        const continueBtn = document.getElementById('continue-btn');
+        
+        checkbox.addEventListener('change', function() {
+            continueBtn.disabled = !this.checked;
+        });
+        
+        // Add click handlers for buttons
+        document.querySelector('button:first-of-type').addEventListener('click', function() {
+            alert('Going back to previous step...');
+        });
+        
+        // continueBtn.addEventListener('click', function() {
+        //     if (!this.disabled) {
+        //         alert('Proceeding to next step...');
+        //     }
+        // });
+    </script>
+    
+    
+    
+    </div>
+</div>
+
+
+
+{% endblock %}
+

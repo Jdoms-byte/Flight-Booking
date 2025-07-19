@@ -1,0 +1,391 @@
+{% extends 'ClientBookingProcess.html' %}
+{% block title %} Select Flight {% endblock %}
+
+{% block content %}
+<!-- Header -->
+<div class="bg-gray-200 shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 py-4">
+        <div class="flex justify-between items-center">
+            <div class="flex space-x-8 text-sm">
+                <div>
+                    <div class="text-gray-600">Departing from</div>
+                    <div class="font-semibold">{{data.departure}} -> {{data.destination}}</div>
+                    <div class="text-gray-500">{{data.departOn}}</div>
+                </div>
+                <div>
+                    <div class="text-gray-600">Returning flight</div>
+                    <div class="font-semibold">{{data.destination}} ->{{ data.departure}}</div>
+                    <div class="text-gray-500">{{data.returnOn}}</div>
+                </div>
+                <div>
+                    <div class="text-gray-600">Count/s</div>
+                    <div class="font-semibold">{{data.adult}} Adults</div>
+                    <div class="font-semibold">{{data.children}} Children</div>
+                    <div class="font-semibold">{{data.infant}} infant</div>
+                </div>
+            </div>
+            <button class="bg-emerald-950 text-white px-8 py-2 text-lg cursor-pointer  rounded-sm hover:bg-teal-900 transition-colors">
+                Edit Search
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Progress Steps -->
+<div class="teal">
+  <div class="max-w-5xl mx-auto px-7 py-7">
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-10">
+      <button class="bg-emerald-950 border-1 text-white  py-3 text-sm shadow-2xs font-bold space-x-1 rounded-sm">Select Flight</button>
+      <button class="bg-white border-2 text-gray-700  py-3 text--sm shadow-2xs font-bold space-x-1 rounded-sm">Information</button>
+      <button class="bg-white border-2 text-gray-700  py-3 text-sm shadow-2xs font-bold space-x-1 rounded-sm">Seats</button>
+      <button class="bg-white border-2 text-gray-700  py-3 text--sm shadow-2xs font-bold space-x-1 rounded-sm">Payment</button>
+      <button class="bg-white border-2 text-gray-700  py-3 text--sm shadow-2xs font-bold space-x-1 rounded-sm">Confirmation</button>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+<!-- Main Content -->
+<div class="max-w-6xl mx-auto px-4 py-8">
+    <!-- Flight Route Header -->
+    <div class="mb-6">
+        <h2 class="text-xl font-semibold mb-2">Select Departing Flight</h2>
+        <div class="flex items-center space-x-4 text-lg">
+            <span class="font-semibold">Manila-MNL</span>
+            <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+            </svg>
+            <span class="font-semibold">Butuan-BXU</span>
+        </div>
+    </div>
+
+
+
+
+        <style>
+        .date-container {
+            position: relative;
+            margin-bottom: 12px; /* Space for shadow */
+        }
+        
+        .date-btn {
+            position: relative;
+            transition: all 0.3s ease;
+            z-index: 1;
+        }
+        
+        .date-shadow {
+            position: absolute;
+            bottom: -10px;
+            left: 5%;
+            width: 90%;
+            height: 10px;
+            background: rgba(0, 0, 0, 0.15);
+            border-radius: 50%;
+            filter: blur(4px);
+            transition: all 0.3s ease;
+            z-index: 0;
+        }
+        
+        .date-btn:hover {
+            transform: translateY(-6px);
+        }
+        
+        .date-btn:hover + .date-shadow {
+            transform: scale(0.9);
+            opacity: 0.8;
+            bottom: -14px;
+        }
+        
+        .selected .date-btn {
+            transform: translateY(-10px);
+            box-shadow: 0 4px 0 rgba(0, 0, 0, 0.1);
+        }
+        
+        .selected .date-shadow {
+            transform: scale(0.85);
+            opacity: 0.7;
+            bottom: -14px;
+        }
+        
+        .floating .selected .date-btn {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .floating .selected .date-shadow {
+            animation: shadowFloat 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(-8px);
+            }
+            50% {
+                transform: translateY(-12px);
+            }
+        }
+        
+        @keyframes shadowFloat {
+            0%, 100% {
+                transform: scale(0.85);
+                opacity: 0.7;
+            }
+            50% {
+                transform: scale(0.75);
+                opacity: 0.5;
+            }
+        }
+    </style>
+<!-- Date Selector --><!-- Select Flight Template -->
+<div class="mb-4">
+  <div class="flex justify-center items-center flex-wrap gap-4">
+    
+    <!-- Previous Button -->
+    <button onclick="shiftDates(-7)"
+      class="hover:-translate-x-1 px-2 py-6 mb-3 rounded-sm border-2 border-yellow-600 text-center min-h-20 transition-all duration-300 bg-yellow-300 hover:bg-yellow-200 cursor-pointer">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+      </svg>
+    </button>
+
+    <!-- Date Buttons (JS will generate here) -->
+    <div id="date-selector" class="flex justify-center px-2 py-4 border-x-2">
+      <div id="date-buttons-container" class="grid grid-cols-7 gap-2 max-w-8xl mx-auto">
+        <!-- JS-generated date buttons here -->
+      </div>
+    </div>
+
+    <!-- Next Button -->
+    <button onclick="shiftDates(1)"
+      class="hover:translate-x-1 px-2 py-6 mb-3 rounded-sm border-2 border-yellow-600 text-center min-h-20 transition-all duration-300 bg-yellow-300 hover:bg-yellow-200 cursor-pointer">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+      </svg>
+    </button>
+
+  </div>
+</div>
+
+<script>
+  let startIndex = 0;
+
+  function formatDateLabel(date) {
+    const options = { weekday: 'short', day: '2-digit', month: 'short' };
+    return date.toLocaleDateString('en-US', options);
+  }
+
+  function generatePrice() {
+    return (Math.floor(Math.random() * 6000) + 4000).toLocaleString(); // PHP 4000–10000
+  }
+
+  function isToday(date) {
+    const today = new Date();
+    return date.toDateString() === today.toDateString();
+  }
+
+  function isPast(date) {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    return date < today;
+  }
+
+  function renderDates() {
+    const container = document.getElementById("date-buttons-container");
+    container.innerHTML = "";
+
+    const today = new Date();
+
+    for (let i = 0; i < 7; i++) {
+      const current = new Date();
+      current.setDate(today.getDate() + startIndex + i);
+
+      const label = formatDateLabel(current);
+      const price = generatePrice();
+      const past = isPast(current);
+      const todayFlag = isToday(current);
+
+      const btn = document.createElement("button");
+      btn.className = `date-btn w-28 h-24 text-center rounded-sm border-2 transition-all duration-300 flex flex-col justify-center items-center
+        ${past ? 'bg-gray-300 text-gray-500 border-gray-400 cursor-not-allowed'
+                : todayFlag 
+                ? 'bg-emerald-950 text-white border-emerald-950 hover:bg-emerald-800 '
+              : 'bg-yellow-300 border-yellow-600 hover:bg-yellow-200 cursor-pointer'}`;
+
+      if (past) btn.disabled = true;
+    //   btn.setAttribute("data-is-today", todayFlag);
+
+      btn.innerHTML = `
+        <div class="text-sm font-medium">${label}</div>
+        <div class="text-sm"><span class="text-xs">PHP</span> ${price}</div>
+      `;
+
+      // ⏺ Automatically select the today button
+    if (todayFlag && !past) {
+      setTimeout(() => selectDate(btn), 0); // Ensure it's rendered before selecting
+    }
+
+      btn.onclick = () => selectDate(btn);
+
+      const wrapper = document.createElement("div");
+      wrapper.className = "date-container w-28 h-20";
+      wrapper.appendChild(btn);
+
+      container.appendChild(wrapper);
+    }
+  }
+
+   const colorSchemes = {
+            yellow: {
+                border: 'border-yellow-600',
+                bg: 'bg-yellow-300',
+                hoverBg: 'hover:bg-yellow-200',
+                selectedBorder: 'border-yellow-700',
+                selectedBg: 'bg-yellow-500'
+            },
+          
+            emerald: {
+                border: 'border-emerald-600',
+                bg: 'bg-emerald-300',
+                hoverBg: 'hover:bg-emerald-200',
+                selectedBorder: 'border-emerald-950',
+                selectedBg: 'bg-emerald-950'
+            }
+        };
+  function selectDate(selectedBtn) {
+    const allBtns = document.querySelectorAll(".date-btn");
+    allBtns.forEach(btn => btn.classList.remove("ring-4", "ring-amber-500", "font-bold"));
+
+    selectedBtn.classList.add("ring-4", "ring-amber-500", "font-bold");
+
+     const currentSelected = document.querySelector('.selected');
+    if (currentSelected) {
+        currentSelected.classList.remove('selected');
+        const btn = currentSelected.querySelector('.date-btn');
+        
+        // Add back the default classes
+        const scheme = colorSchemes['yellow']; // or get current scheme
+        btn.className = btn.className.replace(
+            /border-(yellow|blue|emerald)-\d+/g, '');
+        btn.className = btn.className.replace(
+            /bg-(yellow|blue|emerald)-\d+/g, '');
+        btn.classList.remove('text-white');
+        
+        btn.classList.add(scheme.border, scheme.bg, scheme.hoverBg);
+    }
+    // Add selected class to clicked button's container
+    const container = selectedBtn.parentElement;
+    container.classList.add('selected');
+    
+    // Update button classes
+    const scheme = colorSchemes['emerald']; // or get current scheme
+    selectedBtn.className = selectedBtn.className.replace(
+        /border-(yellow|blue|emerald)-\d+/g, '');
+    selectedBtn.className = selectedBtn.className.replace(
+        /bg-(yellow|blue|emerald)-\d+/g, '');
+    selectedBtn.className = selectedBtn.className.replace(
+        /hover:bg-(yellow|blue|emerald)-\d+/g, '');
+        
+    selectedBtn.classList.add(scheme.selectedBorder, scheme.selectedBg, 'text-white');
+
+  }
+   let isFloating = true;
+
+  function shiftDates(n) {
+    startIndex += n;
+    renderDates();
+  }
+
+  // Initial render
+  renderDates();
+</script>
+
+
+
+    <!-- Sort Options -->
+    <div class="flex justify-end mb-4">
+        <div class="flex items-center space-x-2 ">
+            <span class="text-sm text-gray-600">Sort by:</span>
+            
+            <div class="bg-emerald-950 text-white px-2 py-2   rounded-sm text-sm border-none cursor-pointer">
+                <select class="bg-emerald-950 text-white px-4   text-sm border-none cursor-pointer" onchange="sortFlights(this.value)">
+                    <option value="lowest">Lowest</option>
+                    <option value="fastest">Fastest</option>
+                    <option value="earliest">Earliest</option>
+                </select>
+            </div>
+                
+        
+           
+        </div>
+    </div>
+
+<div class="bg-white rounded-sm border p-6 mb-1">
+    <div class="flex justify-between items-center">
+        <!-- Flight Times (reduced space) -->
+        <div class="flex items-center space-x-6 pl-6 mr-4">
+            <div class="text-center">
+                <div class="text-2xl font-bold">8:00</div>
+                <div class="text-sm text-gray-600">MNL</div>
+            </div>
+            <div class="flex items-center space-x-2">
+                <div class="w-4 h-0.5 bg-gray-300"></div>
+                <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                </svg>
+                <div class="w-4 h-0.5 bg-gray-300"></div>
+            </div>
+            <div class="text-center">
+                <div class="text-2xl font-bold">10:00</div>
+                <div class="text-sm text-gray-600">BXU</div>
+            </div>
+        </div>
+
+        <div class="border-1 h-24 mx-4"></div>
+
+        <!-- Flight Details (more space) -->
+        <div class="text-sm text-gray-600 ">
+            <div class="flex items-center text-left mb-1">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12,6 12,12 16,14"></polyline>
+                </svg>
+                <span class="text-sm font-semibold"> Duration: <span class="text-sm font-bold text-black">2 hr</span></span>
+            </div>
+            <div class="text-sm font-semibold">Flight Number: <span class="text-sm font-bold text-black">591237</span> </div>
+            <div class="text-sm font-semibold">Operated by: <span class="text-sm font-bold text-black">CSUCC-Flight Simulator</span></div>
+
+            <!-- Itinerary Button -->
+            <button class="bg-emerald-950 text-white cursor-pointer px-20 py-2 rounded-sm mt-2 duration-300 ease-in-out hover:bg-emerald-900 transition-colors flex items-center space-x-2" onclick="showItinerary()">
+                <span>Itinerary Details</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+            </button>
+        </div>
+
+        <div class="border-1 h-24 mx-4"></div>
+
+        <!-- Fare Selection (reduced space) -->
+        <div class="text-left flex-1 max-w-[300px] ">
+            <h3 class="text-3xl font-semibold mb-3">Select Fare</h3>
+            <div class="flex space-x-2">
+                <button class="fare-btn px-7 flex py-2 rounded-sm transition-colors duration-200 ease-in-out hover:bg-emerald-900 bg-emerald-950 text-white cursor-pointer" onclick="selectFare(this, 'economy')">
+                    Economy
+                </button>
+                <button class="fare-btn px-7 flex  py-2 rounded-sm transition-colors duration-200 ease-in-out hover:bg-emerald-900  bg-emerald-950 text-white cursor-pointer" onclick="selectFare(this, 'premium')">
+                    Premium Class
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+{% endblock %}

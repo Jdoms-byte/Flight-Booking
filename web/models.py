@@ -99,6 +99,9 @@ class Flight(db.Model):
     route = db.relationship('FlightRoute', back_populates='flights')
     schedules = db.relationship('FlightSchedule', back_populates='flight')
 
+
+    
+
 # ---------------------------
 # FlightSchedule Model
 # ---------------------------
@@ -111,6 +114,10 @@ class FlightSchedule(db.Model):
 
     flight = db.relationship('Flight', back_populates='schedules')
     seats = db.relationship('FlightSeat', back_populates='flight_schedule')
+
+
+
+
 
 # ---------------------------
 # SeatClass Model

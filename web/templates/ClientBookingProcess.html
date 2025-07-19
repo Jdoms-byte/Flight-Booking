@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{url_for('static', filename='src/output.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='src/input.css')}}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+
+    <title>{% block title %} {% endblock %}</title>
+</head>
+<body >
+    <div class="flex items-center justify-between">
+        <a href="/home">Home</a>
+        <a href="/search">Search</a>
+        <a href="/select">Select Flight</a>
+        <a href="/view_selected_flight">View Selected Flight</a>
+        <a href="/information">Passenger Information</a>
+        <a href="/seats">Select a Seat</a>
+        <a href="summary">Booking Summary</a>
+        <a href="/payment">Payment</a>
+        <a href="/test">testing</a>
+    </div>
+
+    <div>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="mb-4">
+            {% for category, message in messages %}
+                <div class="flash-message p-3 rounded text-white mb-2 
+                {% if category == 'success' %} bg-green-600
+                {% elif category == 'error' %} bg-red-600
+                {% else %} bg-blue-600
+                {% endif %}">
+                {{ message }}
+                </div>
+            {% endfor %}
+            </div>
+        {% endif %}
+        {% endwith %}
+    </div>
+    <script>
+    setTimeout(() => {
+        document.querySelectorAll('.flash-message').forEach(el => el.remove());
+    }, 10000);
+    </script>
+
+
+
+      <nav class="bg-emerald-950 px-6 py-3">
+        <div class="flex items-center justify-between">
+            <!-- Logo -->
+            <div class="text-white font-bold text-3xl ml-5">
+                <a href="/">LOGO</a>
+            </div>
+            
+            
+            <!-- Navigation Links -->
+            <div class="hidden md:flex ml-15 space-x-8">
+                <a href="#" class="text-white hover:underline transition-colors">Manage</a>
+                <a href="#" class="text-white hover:underline transition-colors">Travel Info</a>
+                <a href="#" class="text-white hover:underline transition-colors">Explore</a>
+                <a href="#" class="text-white hover:underline transition-colors">About</a>
+            </div>
+            
+            <!-- Login Button -->
+            <button class="bg-white text-green-900 px-6 py-2 mr-2 rounded-sm hover:bg-gray-100 transition-colors font-medium cursor-pointer">
+                Student Login
+            </button>
+            
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden">
+                <button class="text-white hover:text-green-200">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu (hidden by default) -->
+        <div class="md:hidden mt-4 space-y-2 hidden" id="mobile-menu">
+            <a href="#" class="block text-white hover:text-green-200 py-2">Manage</a>
+            <a href="#" class="block text-white hover:text-green-200 py-2">Travel Info</a>
+            <a href="#" class="block text-white hover:text-green-200 py-2">Explore</a>
+            <a href="#" class="block text-white hover:text-green-200 py-2">About</a>
+        </div>
+    </nav>
+
+    {% block content %} {% endblock %}
+
+
+
+
+    <footer class="bg-emerald-950 text-white mt-20">
+        <div class="container mx-auto px-6 py-12">
+
+        </div>
+    </footer>
+
+    <script>
+        // Simple mobile menu toggle
+        const mobileMenuButton = document.querySelector('.md\\:hidden button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+
+
+</body>
+</html>

@@ -25,7 +25,7 @@ def login():
         else:
                 flash('Email or Username Does not Exist', category='error')
             
-    return render_template("login.html")
+    return render_template("system/login.html")
 
 
 @auth.route('/register', methods=['POST','GET'])
@@ -55,7 +55,7 @@ def register():
 
             return redirect(url_for('auth.login'))
 
-    return render_template('register.html')
+    return render_template('system/register.html')
 
 @auth.route('/logout')
 @login_required

@@ -1,0 +1,206 @@
+{% extends 'ClientBookingProcess.html' %}
+{% block title %} Booking Summary {% endblock %}
+
+{% block content %}
+
+<div class="min-h-screen py-8">
+    <div class="max-w-3xl mx-auto px-6">
+        <!-- Header -->
+        <div class="bg-white rounded-lg shadow-sm border border-black overflow-hidden">
+            <!-- Title Bar -->
+            <div class="bg-emerald-950 text-white px-6 py-3">
+                <div class="flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                    </svg>
+                    <h1 class="text-lg font-semibold">Review Booking Summary</h1>
+                </div>
+            </div>
+
+            <!-- Flight Details -->
+            <div class="p-6 space-y-6">
+                <!-- Outbound Flight -->
+                <div class="border-b border-black  overflow-hidden">
+                    <div class=" text-white px-6 py-2">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h3 class="font-semibold text-3xl text-black">Juan Delata</h3>
+                                <p class="text-sm text-black">MNL-BXU</p>
+                                <p class="text-xs text-black">05 May 2025 08:00 To 10:00</p>
+                            </div>
+
+                            <div class="flex items-center">
+                                <div class="border-l border-black h-24 mx-4"></div>
+
+                            <div class="text-right">
+                                <button class="cursor-pointer bg-emerald-950 hover:bg-emerald-900 text-white text-xs px-3 py-1 rounded transition-colors">
+                                    Show Flight Details
+                                </button>
+                                <div class="mt-2">
+                                    <p class="text-xs font-semibold text-black">Sub Total</p>
+                                    <p class="font-bold text-lg text-black">PHP 9,000</p>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Return Flight -->
+                <div class="border-b border-black  overflow-hidden">
+                    <div class=" text-black px-6 py-2">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h3 class="font-semibold text-3xl">Juan Delata</h3>
+                                <p class="text-sm text-black">BXU-MNL</p>
+                                <p class="text-xs text-black">15 May 2025 22:00 To 24:00</p>
+                            </div>
+
+                            <div class="flex items-center">
+                                <div class="border-l border-black h-24 mx-4"></div>
+                            <div class="text-right">
+                                <button class="cursor-pointer bg-emerald-950 hover:bg-emerald-900 text-white text-xs px-3 py-1 rounded transition-colors">
+                                    Show Flight Details
+                                </button>
+                                <div class="mt-2">
+                                    <p class="text-xs font-semibold text-black">Sub Total</p>
+                                    <p class="font-bold text-lg text-black">PHP 9,412</p>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- All Flights Summary -->
+                <div class="border border-black rounded-lg overflow-hidden shadow-2xl/50">
+                    <div class="bg-emerald-950 text-white px-4 py-2">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h3 class="font-semibold text-lg mb-2">All Flights</h3>
+                                <p class="text-xs text-emerald-200">(View All Flight Options)</p>
+                            </div>
+                            <div class="text-right">
+                                <button class="bg-emerald-700 hover:bg-emerald-600 text-white text-xs px-3 py-1 rounded transition-colors">
+                                    See Taxes and Fees
+                                </button>
+                                <div class="mt-2">
+                                    <p class="text-xs text-emerald-200">Total</p>
+                                    <p class="font-bold text-xl">PHP 18,924</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Divider -->
+            <div class="border-t border-black mx-6"></div>
+
+            <!-- Action Buttons -->
+            <div class="p-6">
+                <div class="flex justify-between items-center space-x-4">
+                    <button class="flex-1 bg-white border-1 border-black text-gray-700 font-semibold py-4 px-6 rounded-lg hover:bg-gray-50 hover:border-black transition-colors">
+                        Back
+                    </button>
+                    <button class="flex-1 border-2 bg-emerald-950 hover:bg-emerald-700 text-white font-semibold py-4 px-6 rounded-lg transition-colors">
+                        Proceed Payment
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Flight Details Modal (Hidden by default) -->
+        <div id="flightModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
+            <div class="bg-white rounded-lg p-6 max-w-md w-full mx-4">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-lg font-semibold text-gray-900">Flight Details</h3>
+                    <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div class="space-y-3">
+                    <div class="flex justify-between">
+                        <span class="text-gray-600">Flight Number:</span>
+                        <span class="font-semibold">PR 123</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-600">Aircraft:</span>
+                        <span class="font-semibold">Airbus A320</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-600">Seat:</span>
+                        <span class="font-semibold">12A</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-600">Class:</span>
+                        <span class="font-semibold">Economy</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-600">Baggage:</span>
+                        <span class="font-semibold">20kg</span>
+                    </div>
+                </div>
+                <div class="mt-6">
+                    <button onclick="closeModal()" class="w-full bg-emerald-950 text-white py-2 px-4 rounded-lg hover:bg-emerald-700 transition-colors">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Show flight details modal
+        function showFlightDetails() {
+            document.getElementById('flightModal').classList.remove('hidden');
+            document.getElementById('flightModal').classList.add('flex');
+        }
+
+        // Close modal
+        function closeModal() {
+            document.getElementById('flightModal').classList.add('hidden');
+            document.getElementById('flightModal').classList.remove('flex');
+        }
+
+        // Add event listeners to all "Show Flight Details" buttons
+        document.querySelectorAll('button').forEach(button => {
+            if (button.textContent.includes('Show Flight Details')) {
+                button.addEventListener('click', showFlightDetails);
+            }
+        });
+
+        // Add event listeners for main action buttons
+        document.querySelector('button[onclick="closeModal()"]') || 
+        document.addEventListener('DOMContentLoaded', function() {
+            const buttons = document.querySelectorAll('button');
+            buttons.forEach(button => {
+                if (button.textContent === 'Back') {
+                    button.addEventListener('click', function() {
+                        alert('Going back to previous page...');
+                    });
+                } else if (button.textContent === 'Proceed Payment') {
+                    button.addEventListener('click', function() {
+                        alert('Proceeding to payment...');
+                    });
+                }
+            });
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('flightModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+    </script>
+
+
+
+</div>
+
+
+
+{% endblock %}

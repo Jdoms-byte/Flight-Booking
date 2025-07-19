@@ -1,0 +1,378 @@
+{% extends 'ClientBookingProcess.html' %}
+
+{% block title %}Information {% endblock %}
+
+{% block content %}
+<!-- Header -->
+<div class="bg-gray-200 shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 py-4">
+        <div class="flex justify-between items-center">
+            <div class="flex space-x-8 text-sm">
+                <div>
+                    <div class="text-gray-600">Departing from</div>
+                    <div class="font-semibold">Manila, Philippines - MNL</div>
+                    <div class="text-gray-500">08 May 2025</div>
+                </div>
+                <div>
+                    <div class="text-gray-600">Returning flight</div>
+                    <div class="font-semibold">Butuan, Philippines - BXU</div>
+                    <div class="text-gray-500">15 May 2025</div>
+                </div>
+                <div>
+                    <div class="text-gray-600">Count/s</div>
+                    <div class="font-semibold">1 Adult</div>
+                </div>
+            </div>
+            <button class="bg-green text-white px-8 py-2 text-lg cursor-pointer  rounded-sm hover:bg-teal-900 transition-colors">
+                Edit Search
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Progress Steps -->
+<div class="teal">
+  <div class="max-w-5xl mx-auto px-7 py-7">
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-10">
+      <button class="head-green border-1 text-white  py-3 text-sm shadow-2xs font-bold space-x-1 rounded-sm">Select Flight</button>
+      <button class="bg-white border-2 text-gray-700  py-3 text--sm shadow-2xs font-bold space-x-1 rounded-sm">Information</button>
+      <button class="bg-white border-2 text-gray-700  py-3 text-sm shadow-2xs font-bold space-x-1 rounded-sm">Seats</button>
+      <button class="bg-white border-2 text-gray-700  py-3 text--sm shadow-2xs font-bold space-x-1 rounded-sm">Payment</button>
+      <button class="bg-white border-2 text-gray-700  py-3 text--sm shadow-2xs font-bold space-x-1 rounded-sm">Confirmation</button>
+    </div>
+  </div>
+</div>
+
+
+  
+
+    <div>
+        <div class="max-w-5xl mx-auto">
+            <div class="my-5 mx-[-50px] ">
+            <h1 class="text-3xl">Select your seats</h1>
+        </div>
+        <div class="bg-white rounded-lg shadow-2xl/10 border-2 border-gray-300 relative overflow-hidden">
+            <!-- Green accent border -->
+            <div class="absolute left-0 top-0 bottom-0 w-1 bg-green-800 p-1"></div>
+            
+            <div class="p-6 pl-8">
+                <!-- Header with icon -->
+                <div class="flex items-center mb-4">
+                    <div class="flex-shrink-0 mr-3">
+                        <div class="w-6 h-6 bg-green-800 rounded-full flex items-center justify-center">
+                            <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="text-base font-semibold text-gray-900">How to select seats</h3>
+                </div>
+                
+                <!-- Information list -->
+                <div class="space-y-3 text-sm text-gray-600">
+                    <div class="flex items-start">
+                        <span class="inline-block w-1.5 h-1.5 bg-gray-600 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                        <span class="text-[12px] font-semibold">Select a passenger and choose a seat</span>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="inline-block w-1.5 h-1.5 bg-gray-600 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                        <span class="text-[12px] font-semibold">A seat is included in your fare. You are not required to purchase a seat assignment to travel. If you decide to purchase a ticket and do not select a seat prior to purchase, a seat will be provided to you without additional charge when you travel.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div class="max-w-4xl mx-auto mt-7">
+        <div class="bg-white rounded-lg   p-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Departing From -->
+                <div>
+                    <div class="text-xs text-gray-500 uppercase tracking-wide mb-2">
+                        Departing From
+                    </div>
+                    <div class="text-lg font-semibold text-gray-900 mb-1">
+                        Manila, Philippines - MNL
+                    </div>
+                    <div class="text-sm text-gray-600">
+                        08 May 2025
+                    </div>
+                </div>
+                
+                <!-- Arrive To -->
+                <div>
+                    <div class="text-xs text-gray-500 uppercase tracking-wide mb-2">
+                        Arrive To
+                    </div>
+                    <div class="text-lg font-semibold text-gray-900 mb-1">
+                        Butuan, Philippines - BXU
+                    </div>
+                    <div class="text-sm text-gray-600">
+                        08 May 2025
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="flex max-w-5xl mx-auto mt-7">
+        <div class="w-90 border bg-white rounded-md shadow-lg/40 p-6 mr-2 space-y-4">
+            <h2 class="text-xl text-center font-bold border-b-2 pb-6 mb-6">Passenger</h2>
+            
+            <!-- Passenger 1 -->
+            <button class="w-full flex  justify-between bg-green-950 text-white px-3 py-2 rounded-lg hover:bg-green-900 transition">
+                <div class=" text-left">
+                    <p class="font-semibold text-[18px]">1. Juan Delata</p>
+                    <span class="text-sm text-[12px] italic  text-lime-500">Not Selected</span>
+                </div>
+                <span class="text-lime-500 text-2xl">&gt;</span>
+            </button>
+
+            <!-- Passenger 2 -->
+            <button class="w-full flex items-center justify-between bg-gray-300 text-gray-700 px-4 py-3 rounded-lg cursor-not-allowed">
+            <div>
+                <p class="font-semibold">2. Passenger</p>
+                <span class="text-sm italic text-gray-500">Not Selected</span>
+            </div>
+            </button>
+        </div>
+
+
+            <style>
+            .wing-shape {
+                clip-path: polygon(0% 100%, 0% 50%, 100% 20%, 100% 70%);
+            }
+            </style>
+
+
+
+          <!-- Seatmap div -->
+                    <!-- Seatmap div -->
+                    <div class="relative bg-emerald-950 border rounded-md shadow-lg/40 px-6 pt-2 w-full max-w-5xl overflow-hidden">
+
+                    <!-- Left Wing -->
+                    <div class="absolute -left-32 top-1/3 w-85 h-150 bg-gray-300 wing-shape z-0"></div>
+
+                    <!-- Right Wing -->
+                    <div class="absolute -right-32 top-1/3 w-85 h-150 bg-gray-300 wing-shape transform scale-x-[-1] z-0"></div>
+
+
+                        <!-- Seatmap Legend -->
+                        <div class="bg-white rounded-md p-6 grid grid-cols-4 gap-2 text-sm  font-medium">
+                            <div class="flex items-center space-x-2">
+                                <div class="w-10 h-10 bg-black rounded"></div>
+                                <span>Unavailable</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <div class="w-10 h-10 border rounded"></div>
+                                <span>Free</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <div class="w-10 h-10 border rounded flex items-center justify-center bg-white"><span class="text-3xl">★</span></div>
+                                <span>Charge</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <div class="w-10 h-10 bg-yellow-400 rounded"></div>
+                                <span>Selected</span>
+                            </div>
+                        </div>
+
+
+                 
+                                            
+                        
+
+                        <div class="flex justify-center">
+                            <div class="p-4" style="background-color: #CBE2DA;">
+                                <div class="text-center font-bold text-lg mb-4">
+                                    AirBus<br><span class="text-sm">Front</span>
+                                </div>
+
+                                <div class="space-y-4">
+                                    {% set total_rows = 20 %}
+                                    {% for row in range(total_rows) %}
+                                        {% set index = row * 4 %}
+                                        {% set seats_slice = seats[index:index+4] %}
+                                        {% set left_seats = seats_slice[0:2] %}
+                                        {% set right_seats = seats_slice[2:4] %}
+
+                                        <div class="grid grid-cols-5 gap-4 items-center text-center text-sm font-semibold">
+                                        <!-- Left Side (2 seats or blank) -->
+                                        {% for i in range(2) %}
+                                            {% if left_seats|length > i %}
+                                            {% set seat = left_seats[i] %}
+                                            {% if seat.status == "unavailable" %}
+                                                <div id="triggerBox{{seat.status}}"  class="w-11 h-11 bg-green-950 rounded"></div>
+                                            {% elif seat.status == "number" %}
+                                                <div class="triggerBox w-11 h-11 border rounded flex items-center justify-center bg-white cursor-pointer">
+                                                ★
+                                                </div>
+                                            {% elif seat.status == "free" %}
+                                                <div id="triggerBox{{seat.status}}" class="w-11 h-11 border rounded bg-white"></div>
+                                            {% elif seat.status == "reserved" %}
+                                                <div id="triggerBox{{seat.status}}"  class="w-11 h-11 border rounded bg-yellow-400"></div>
+                                        
+                                            {% endif %}
+                                            {% else %}
+                                            <!-- Empty seat box -->
+                                            <div class="w-11 h-11 border rounded bg-red-500 text-white text-4xl">×</div>
+                                            {% endif %}
+                                        {% endfor %}
+
+                                        <!-- Row Number (center always shown) -->
+                                        <div class="flex items-center justify-center font-bold text-gray-700">
+                                            {{ row + 1 }}
+                                        </div>
+
+                                        <!-- Right Side (2 seats or blank) -->
+                                        {% for i in range(2) %}
+                                            {% if right_seats|length > i %}
+                                            {% set seat = right_seats[i] %}
+                                            {% if seat.status == "unavailable" %}
+                                                <div id="triggerBox{{seat.status}}" class="w-11 h-11 bg-black rounded"></div>
+                                            {% elif seat.status == "number" %}
+                                                <div   class="triggerBox  w-11 h-11 border rounded flex items-center justify-center text-lg text-yellow-500 bg-white cursor-pointer">
+                                                ★
+                                                </div>
+                                            {% elif seat.status == "free" %}
+                                                <div id="triggerBox{{seat.status}}" class="w-11 h-11 border rounded bg-white"></div>
+                                            {% elif seat.status == "reserved" %}
+                                                <div id="triggerBox{{seat.status}}"  class="w-11 h-11 border rounded bg-yellow-400"></div>
+                                            {% else %}
+                                            {% endif %}
+                                            {% else %}
+                                            <!-- Empty seat box -->
+                                            <div class="w-11 h-11 border rounded bg-red-500 text-white text-4xl">×</div>
+                                            {% endif %}
+                                        {% endfor %}
+                                        </div>
+                                    {% endfor %}
+                                    </div>
+
+
+                                <!-- Popover -->
+                                <div 
+                                    id="popover"
+                                    class="absolute z-50 w-48 p-4 bg-white rounded shadow-lg flex flex-col items-center space-y-2 border hidden"
+                                >
+                                    <div class="text-green-900 text-4xl" style="text-shadow: 0 0 6px yellow;">★</div>
+                                    <button class="bg-green-900 text-white px-4 py-1 rounded hover:bg-green-800">Select</button>
+                                </div>
+                                </div>
+                            </div>
+                            <script>
+                            const popover = document.getElementById('popover');
+                            const triggerBoxes = document.querySelectorAll('.triggerBox');
+
+                            triggerBoxes.forEach((box) => {
+                                box.addEventListener('click', (e) => {
+                                e.stopPropagation();
+
+                                const rect = box.getBoundingClientRect();
+                                const scrollY = window.scrollY;
+
+                                popover.classList.remove('hidden');
+                                popover.style.position = 'absolute';
+                                popover.style.left = `${rect.left + rect.width / 2 - 96}px`;
+
+                                if (rect.bottom + 150 < window.innerHeight) {
+                                    popover.style.top = `${scrollY + rect.bottom + 8}px`;
+                                } else {
+                                    popover.style.top = `${scrollY + rect.top - popover.offsetHeight - 8}px`;
+                                }
+                                });
+                            });
+
+                            // Hide popover if clicking outside
+                            document.addEventListener('click', (e) => {
+                                if (!popover.contains(e.target) && !e.target.classList.contains('triggerBox')) {
+                                popover.classList.add('hidden');
+                                }
+                            });
+                            </script>
+
+
+
+
+                    
+                        
+                            <!-- Seat Rows
+    
+                            
+                            <div class="w-11 h-11 bg-black rounded"></div>
+                            <div class="w-11 h-11 border rounded flex items-center justify-center bg-white">★</div>
+                            <div>1</div>
+                            <div class="w-11 h-11 border rounded bg-yellow-400"></div>
+                            <div class="w-11 h-11 border rounded flex items-center justify-center bg-white">★</div>
+
+                        
+                          
+                            <div class="w-11 h-11 border rounded bg-white"></div>
+                            <div class="w-11 h-11 rounded bg-yellow-400"></div>
+                              <div>2</div>
+                            <div class="w-11 h-11 border rounded bg-white"></div>
+                            <div class="w-11 h-11 bg-black rounded"></div>
+
+        
+                            
+                            <div class="w-11 h-11 border rounded bg-white"></div>
+                            <div class="w-11 h-11 border rounded bg-white"></div>
+                            <div>3</div>
+                            <div class="w-11 h-11 border rounded bg-white"></div>
+                            <div class="w-11 h-11 border rounded bg-white"></div>
+
+                    
+                            
+                            <div class="w-11 h-11 border rounded bg-white"></div>
+                            <div class="w-11 h-11 bg-black rounded"></div>
+                            <div>4</div>
+                            <div class="w-11 h-11 border rounded bg-white"></div>
+                            <div class="w-11 h-11 border rounded flex items-center justify-center bg-white">★</div>
+
+                
+                            
+                            <div class="w-11 h-11 border rounded bg-white"></div>
+                            <div class="w-11 h-11 border rounded bg-white"></div>
+                            <div>5</div>
+                            <div class="w-11 h-11 border rounded bg-white"></div>
+                            <div class="w-11 h-11 border rounded bg-white"></div>
+
+                          
+                            <div class="w-11 h-11 border rounded bg-white"></div>
+                            <div class="w-11 h-11 border rounded flex items-center justify-center bg-white">★</div>
+                            <div>6</div>
+                            <div class="w-11 h-11 border rounded bg-white"></div>
+                            <div class="w-11 h-11 border rounded bg-white"></div> -->
+                            
+        </div>
+        <!-- Action Buttons RIGHT BELOW seatmap -->
+
+
+
+        
+        
+    </div>
+
+     <!-- Action Buttons (now inside the seatmap container) -->
+    <div class="flex flex-col sm:flex-row gap-3 sm:justify-end mt-6">
+        <!-- Back Button -->
+        <button class="px-20 py-3 border-2 border-gray-400 text-gray-700 font-medium rounded-md hover:bg-gray-50 hover:border-gray-500 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2">
+            Back
+        </button>
+
+        <!-- Continue Button -->
+        <button class="px-20 py-3 bg-green-950 text-white font-medium rounded-md hover:bg-green-900 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2" id="continue-btn">
+            Continue
+        </button>
+    </div>
+
+    
+
+    
+    
+
+{% endblock %}
+

@@ -1,0 +1,114 @@
+{% extends 'ClientBookingProcess.html' %}
+
+{% block title %} Payments {% endblock %}
+
+{% block content %}
+
+<!-- Header -->
+<div class="bg-gray-200 shadow-sm">
+    <div class="max-w-6xl mx-auto px-8 py-4">
+        <div class="flex justify-between items-center">
+            <div class="flex space-x-30 text-sm ">
+                <div>
+                    <div class="text-gray-600">Departing from</div>
+                    <div class="font-semibold">Manila, Philippines - MNL</div>
+                    <div class="text-gray-500">08 May 2025</div>
+                </div>
+                <div>
+                    <div class="text-gray-600">Returning flight</div>
+                    <div class="font-semibold">Butuan, Philippines - BXU</div>
+                    <div class="text-gray-500">15 May 2025</div>
+                </div>
+                <div>
+                    <div class="text-gray-600">Count/s</div>
+                    <div class="font-semibold">1 Adult</div>
+                </div>
+                <div>
+                    <div class="text-gray-600">Shipping Fee</div>
+                    <div class="font-semibold">PHP 18,924</div>
+
+                </div>
+            </div>
+            <!-- <button class="bg-yellow-600 text-white px-8 py-2 text-lg cursor-pointer  rounded-sm hover:bg-teal-900 transition-colors">
+                PHP 18,924
+            </button> -->
+        </div>
+    </div>
+</div>
+
+<!-- Progress Steps -->
+<div class="teal">
+  <div class="max-w-5xl mx-auto px-7 py-7">
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-10">
+      <button class="head-green border-1 text-white  py-3 text-sm shadow-2xs font-bold space-x-1 rounded-sm">Select Flight</button>
+      <button class="bg-white border-2 text-gray-700  py-3 text--sm shadow-2xs font-bold space-x-1 rounded-sm">Information</button>
+      <button class="bg-white border-2 text-gray-700  py-3 text-sm shadow-2xs font-bold space-x-1 rounded-sm">Seats</button>
+      <button class="bg-white border-2 text-gray-700  py-3 text--sm shadow-2xs font-bold space-x-1 rounded-sm">Payment</button>
+      <button class="bg-white border-2 text-gray-700  py-3 text--sm shadow-2xs font-bold space-x-1 rounded-sm">Confirmation</button>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="flex items-center justify-center p-6">
+          <div class="border-10 border-emerald-950 w-full max-w-3xl p-8 rounded-xl shadow-lg">
+    
+    <!-- Title -->
+    <div class="mb-6 flex items-center gap-3 border-b-2 pb-2">
+      <div class="bg-green-800 p-2 rounded-full">
+        <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M3 6a3 3 0 013-3h12a3 3 0 013 3v3H3V6zM3 11h18v7a3 3 0 01-3 3H6a3 3 0 01-3-3v-7z"/>
+        </svg>
+      </div>
+      <h2 class="text-xl font-semibold text-emerald-950">Choose Your Payment Method</h2>
+    </div>
+
+    <!-- Payment Options -->
+    <form class="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-10">
+      
+      <!-- Option -->
+      <label class="relative group cursor-pointer border-2 rounded-lg p-5 text-center hover:border-green-600 transition">
+        <input type="radio"  name="payment" class="hidden peer" >
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Gcash_2020_logo.png" alt="GCash" class="w-10 h-10 mx-auto mb-2">
+        <p class="font-semibold text-gray-700">GCash</p>
+        <div class="absolute top-2 right-2 w-5 h-5 bg-green-700 rounded-full flex items-center justify-center opacity-0 peer-checked:opacity-100 transition">
+          <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"/>
+          </svg>
+        </div>
+      </label>
+
+      <label class="relative group cursor-pointer border-2 rounded-lg p-5 text-center hover:border-green-600 transition">
+        <input type="radio" name="payment" class="hidden peer">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/PayMaya_Logo_2020.png" alt="PayMaya" class="w-10 h-10 mx-auto mb-2">
+        <p class="font-semibold text-gray-700">PayMaya</p>
+        <div class="absolute top-2 right-2 w-5 h-5 bg-green-700 rounded-full flex items-center justify-center opacity-0 peer-checked:opacity-100 transition">
+          <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"/>
+          </svg>
+        </div>
+      </label>
+
+      <label class="relative group cursor-pointer border-2 rounded-lg p-5 text-center hover:border-green-600 transition">
+        <input type="radio" name="payment" class="hidden peer">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" class="w-10 h-10 mx-auto mb-2">
+        <p class="font-semibold text-gray-700">PayPal</p>
+        <div class="absolute top-2 right-2 w-5 h-5 bg-green-700 rounded-full flex items-center justify-center opacity-0 peer-checked:opacity-100 transition">
+          <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"/>
+          </svg>
+        </div>
+      </label>
+
+    </form>
+
+    <!-- Action Buttons -->
+    <div class="flex justify-end">
+      <button class="px-20 py-3 font-semibold border border-gray-500 text-gray-700 rounded-md cursor-pointer hover:bg-gray-200 transition mr-4">Back</button>
+      <button class="px-20 py-3 font-semibold bg-emerald-950 text-white rounded-md hover:bg-green-900 cursor-pointer transition">Confirm</button>
+    </div>
+  </div>
+</div>
+ 
+{% endblock %}

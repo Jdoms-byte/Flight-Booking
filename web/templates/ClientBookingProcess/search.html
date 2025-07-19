@@ -1,0 +1,249 @@
+{% extends 'ClientBookingProcess.html' %}
+
+{% block title %} Search {% endblock %}
+
+{% block content %}
+<style>
+  .form-radio{
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
+  .form-radio:checked{
+    accent-color: #053322;
+  }
+</style>
+<div class="max-w-5xl mx-auto mt-3 p-6  ">
+  <div class="flex gap-2 mb-13 ">
+      <svg  xmlns="http://www.w3.org/2000/svg" width="48" height="48"  
+        fill="#NaNNaNNaN" viewBox="0 0 24 24" >
+        <!--Boxicons v3.0 https://boxicons.com | License  https://docs.boxicons.com/free-->
+        <path d="m22,15.5v-.94c0-.15-.07-.3-.19-.39l-7.81-6.16v-3.89c0-1-.68-1.92-1.66-2.08-1.25-.2-2.34.76-2.34,1.97v4.1l-7.81,6.16c-.12.09-.19.24-.19.39v.84c0,.34.34.59.67.47l7.33-2.58v4.6l-2.78,1.85c-.14.09-.22.25-.22.42v.99c0,.35.36.6.69.46l4.31-1.73,4.31,1.73c.33.13.69-.11.69-.46v-.99c0-.17-.08-.32-.22-.42l-2.78-1.85v-4.68l7.33,2.65c.33.12.67-.12.67-.47Z"></path>
+      </svg>
+      <h1 class="text-5xl">Search Flight</h1>
+  </div>
+ <form method="POST" >
+
+  <!-- Trip Type Buttons -->
+  <div class="flex space-x-4 mb-10 mt-6" id="trip-options">
+
+  <!-- Round-trip -->
+  <label class="flex items-center space-x-2 cursor-pointer">
+    <input type="radio" name="tripType" value="roundTrip"
+      class="form-radio text-green-600"
+      {% if data.tripType == 'roundTrip' %}checked{% endif %}>
+    <span class="option px-5 py-2 text-sm font-semibold rounded border border-green-950 cursor-pointer
+      {% if data.tripType == 'roundTrip' %}bg-emerald-950 text-white{% else %}bg-white text-black{% endif %}">
+      Round-trip
+    </span>
+  </label>
+
+  <!-- One-way -->
+  <label class="flex items-center space-x-2 cursor-pointer">
+    <input type="radio" name="tripType" value="oneWay"
+      class="form-radio text-green-600"
+      {% if data.tripType == 'oneWay' %}checked{% endif %}>
+    <span class="option px-5 py-2 text-sm font-semibold rounded border border-green-950 cursor-pointer
+      {% if data.tripType == 'oneWay' %}bg-emerald-950 text-white{% else %}bg-white text-black{% endif %}">
+      One-way
+    </span>
+  </label>
+
+  <!-- Multi-City -->
+  <label class="flex items-center space-x-2 cursor-pointer">
+    <input type="radio" name="tripType" value="multiCity"
+      class="form-radio text-green-600"
+      {% if data.tripType == 'multiCity' %}checked{% endif %}>
+    <span class="option px-5 py-2 text-sm font-semibold rounded border border-green-950 cursor-pointer
+      {% if data.tripType == 'multiCity' %}bg-emerald-950 text-white{% else %}bg-white text-black{% endif %}">
+      Multi-City
+    </span>
+  </label>
+
+</div>
+
+<script>
+  const tripOptions = document.querySelectorAll('#trip-options label');
+
+  tripOptions.forEach(label => {
+    label.addEventListener('click', () => {
+      tripOptions.forEach(l => {
+        l.querySelector('span').classList.remove('bg-emerald-950', 'text-white');
+        l.querySelector('span').classList.add('bg-white', 'text-black');
+      });
+
+      const span = label.querySelector('span');
+      span.classList.add('bg-emerald-950', 'text-white');
+      span.classList.remove('bg-white', 'text-black');
+    });
+  });
+</script>
+<!-- trip type   -->
+
+
+
+
+
+  <!-- Form Inputs -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3  mb-10">
+
+   <div>
+    <div class="input-box border border-gray-600 px-2 pb-2 pt-1 rounded custom-shadow bg-white ">
+            <label class="block text-xs font-semibold text-gray-700">Departure</label>
+            <div class="relative ">
+                <input 
+
+                    name="departure"
+                    type="text" 
+                    placeholder="Select Departure"
+                    value="{{data.departure}}"
+                    class="w-full border-0 border-b-2  focus:outline-none focus:border-green-950 text-xs py-1 pr-6 bg-transparent"
+                >
+                <svg xmlns="http://www.w3.org/2000/svg" fill="#NaNNaNNaN" width="16" height="16" fill="#666666" viewBox="0 0 24 24" class="absolute right-0 bottom-0 mb-1">
+                    <path d="m18.02,14.73c-.4.64-.84,1.23-1.27,1.76,2.13.48,3.25,1.19,3.25,1.51,0,.51-2.75,2-8,2s-8-1.49-8-2c0-.32,1.12-1.03,3.25-1.51-.43-.53-.86-1.12-1.27-1.76-2.32.64-3.98,1.71-3.98,3.27,0,2.75,5.18,4,10,4s10-1.25,10-4c0-1.56-1.67-2.63-3.98-3.27Z"></path>
+                    <path d="m6,8.44c-.02,5.1,5.17,9.18,5.39,9.35.18.14.4.21.61.21s.43-.07.61-.21c.22-.17,5.41-4.25,5.39-9.35,0-3.55-2.69-6.44-6-6.44s-6,2.89-6,6.44Zm8-.44c0,1.1-.9,2-2,2s-2-.9-2-2,.9-2,2-2,2,.9,2,2Z"></path>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+
+    <div>
+    <div class="border border-gray-600 px-2 pb-2 pt-1 rounded custom-shadow bg-white input-box">
+            <label class="block text-xs font-semibold text-gray-700">Destination</label>
+            <div class="relative">
+                <input 
+                    name="destination"
+                    type="text" 
+                    placeholder="Select destination"
+                    value="{{data.destination}}"
+                    class="w-full border-0 border-b-2  focus:outline-none focus:border-green-950 text-xs py-1 pr-6 bg-transparent"
+                >
+                <svg xmlns="http://www.w3.org/2000/svg" fill="#NaNNaNNaN" width="16" height="16" fill="#666666" viewBox="0 0 24 24" class="absolute right-0 bottom-0 mb-1">
+                    <path d="m18.02,14.73c-.4.64-.84,1.23-1.27,1.76,2.13.48,3.25,1.19,3.25,1.51,0,.51-2.75,2-8,2s-8-1.49-8-2c0-.32,1.12-1.03,3.25-1.51-.43-.53-.86-1.12-1.27-1.76-2.32.64-3.98,1.71-3.98,3.27,0,2.75,5.18,4,10,4s10-1.25,10-4c0-1.56-1.67-2.63-3.98-3.27Z"></path>
+                    <path d="m6,8.44c-.02,5.1,5.17,9.18,5.39,9.35.18.14.4.21.61.21s.43-.07.61-.21c.22-.17,5.41-4.25,5.39-9.35,0-3.55-2.69-6.44-6-6.44s-6,2.89-6,6.44Zm8-.44c0,1.1-.9,2-2,2s-2-.9-2-2,.9-2,2-2,2,.9,2,2Z"></path>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <div>
+    <div class="input-box border border-gray-600 px-2 pb-2 pt-1 rounded custom-shadow bg-white ">
+      <label class="block text-xs font-semibold text-gray-700  ">Depart On</label>
+      <input type="date" value="{{data.departOn}}" name="departOn"
+          class="w-full border-0 border-b-2  focus:outline-none focus:border-b-2 text-xs py-1">
+    </div>
+    </div>
+
+    <div>
+    <div class="input-box border border-gray-600 px-2 pb-2 pt-1 rounded custom-shadow bg-white ">
+      <label class="block text-xs font-semibold text-gray-700  ">Return On</label>
+      <input type="date" value="{{data.returnOn}}" name="returnOn"
+          class="w-full border-0 border-b-2 focus:outline-none focus:border-b-2 text-xs py-1">
+    </div>
+    </div>
+
+  </div>
+    
+    <div class="grid grid-cols-4 mt-5  md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+    <div class="input-box border border-gray-600 px-2 pb-2 pt-1 rounded custom-shadow bg-white ">
+            <label class=" text-xs font-semibold flex text-gray-700">Adult/s  <p class="ml-1 text-gray-500"> (12+ years)</p></label>
+            <div class="relative ">
+                <select name="adult" class="custom-select w-full border-0 border-b-2 border-black focus:outline-none focus:border-black text-xs  bg-transparent ">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                </select>
+                <div class="absolute right-0 bottom-0 mb-2 pointer-events-none">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="#666666">
+                        <path d="M7 10l5 5 5-5z"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+    <div class="input-box border border-gray-600 px-2 pb-2 pt-1 rounded ease-in-out custom-shadow bg-white ">
+            <label class=" text-xs font-semibold flex text-gray-700">Children  <p class="ml-1 text-gray-500"> (2-11 years)</p></label>
+            <div class="relative ">
+                <select name="children" class="custom-select w-full border-0 border-b-2 border-black focus:outline-none focus:border-black text-xs  bg-transparent ">
+                    <option  selected class="text-gray-200">0</option>                  
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                </select>
+                <div class="absolute right-0 bottom-0 mb-2 pointer-events-none bo">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="#666666">
+                        <path d="M7 10l5 5 5-5z"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+     <div class="input-box border border-gray-600 px-2 pb-2 pt-1 rounded custom-shadow bg-white ">
+            <label class=" text-xs font-semibold flex text-gray-700">Infant  <p class="ml-1 text-gray-500"> (Under 2 years)</p></label>
+            <div class="relative ">
+                <select name="infant" class="custom-select w-full border-0 border-b-2 border-black focus:outline-none focus:border-black text-xs  bg-transparent ">
+                    <option  selected class="text-gray-200">0</option>                  
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                </select>
+                <div class="absolute right-0 bottom-0 mb-2 pointer-events-none">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="#666666">
+                        <path d="M7 10l5 5 5-5z"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+
+    <!-- Search Button -->
+    <div class="col-span-full mt-7 text-right">
+      <button type="submit" class="bg-emerald-950 hover:bg-emerald-900 text-white px-20 py-2  rounded-sm   cursor-pointer text-lg 
+               
+               transition duration-200 ease-in-out">
+        Search Flights
+      </button>
+    </div>
+  </form>
+</div>
+
+<script>
+  const inputBoxes = document.querySelectorAll('.input-box');
+
+  inputBoxes.forEach((box) => {
+    const focusable = box.querySelector('input, select');
+
+    if (!focusable) return;
+
+    // Focus (by Tab or Click)
+    focusable.addEventListener('focus', () => {
+      inputBoxes.forEach(b => b.classList.remove('shadow-[-4px_4px_0_rgba(0,0,0,0.8)]','transition' ,'duration-200', 'ease-in-out','-translate-y-1'
+));
+      box.classList.add('shadow-[-4px_4px_0_rgba(0,0,0,0.8)]','transition' ,'duration-200', 'ease-in-out','-translate-y-1'
+);
+    });
+
+    // Optional: remove on blur
+    focusable.addEventListener('blur', () => {
+      box.classList.remove('shadow-[-4px_4px_0_rgba(0,0,0,0.8)]','transition' ,'duration-200', 'ease-in-out','-translate-y-1'
+);
+    });
+  });
+</script>
+
+
+
+
+{% endblock %}
